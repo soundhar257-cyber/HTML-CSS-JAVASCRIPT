@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Hotel Booking - HotelHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🏨 HotelHub</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('hotels')">Browse Hotels</a></li>
+                <li><a href="#" onclick="showSection('bookings')">My Bookings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Find Your Perfect Stay</h2>
+                <p>Book luxury hotels at the best prices</p>
+                <button class="btn btn-primary" onclick="showSection('hotels')">Explore Hotels</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotels Section -->
+    <section id="hotels" class="section">
+        <div class="container">
+            <h2>Browse Hotels</h2>
+            
+            <!-- Search & Filter -->
+            <div class="filter-section">
+                <input type="text" id="searchInput" placeholder="Search by hotel name or location..." class="search-box">
+                <div class="filter-group">
+                    <label>Price Range:</label>
+                    <input type="range" id="priceFilter" min="0" max="500" value="500" class="slider">
+                    <span id="priceValue">$500</span>
+                </div>
+                <div class="filter-group">
+                    <label>Rating:</label>
+                    <select id="ratingFilter" class="filter-select">
+                        <option value="0">All Ratings</option>
+                        <option value="3">3+ Stars</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+                <button class="btn btn-secondary" onclick="filterHotels()">Apply Filters</button>
+                <button class="btn btn-light" onclick="resetFilters()">Reset</button>
+            </div>
+
+            <!-- Hotels Grid -->
+            <div id="hotelsGrid" class="hotels-grid">
+                <!-- Hotels will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <h3>Book Your Hotel</h3>
+            <form id="bookingForm" onsubmit="submitBooking(event)">
+                <input type="hidden" id="hotelId">
+                <input type="hidden" id="hotelName">
+                <input type="hidden" id="hotelPrice">
+
+                <div class="form-group">
+                    <label>Check-in Date:</label>
+                    <input type="date" id="checkInDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Check-out Date:</label>
+                    <input type="date" id="checkOutDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Guests:</label>
+                    <input type="number" id="guests" min="1" max="10" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Room Type:</label>
+                    <select id="roomType" required>
+                        <option>Single Room</option>
+                        <option>Double Room</option>
+                        <option>Suite</option>
+                        <option>Deluxe Suite</option>
+                    </select>
+                </div>
+
+                <div class="price-summary">
+                    <p>Total Price: <span id="totalPrice">$0</span></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Complete Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bookings Section -->
+    <section id="bookings" class="section">
+        <div class="container">
+            <h2>My Bookings</h2>
+            <div id="bookingsList" class="bookings-list">
+                <!-- Bookings will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 HotelHub. All rights reserved. | Your trusted hotel booking platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
